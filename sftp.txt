@@ -1,0 +1,4 @@
+Server:		5.148.32.151
+Username:	verif_norat
+Password:	!3+ASThh9+j4HTetznAZOhY6v15LNWm4LXZvbZ0QbxP0=
+Port/Protocol	22 / SFTP
