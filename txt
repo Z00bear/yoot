@@ -1,0 +1,24 @@
+sudo dnf -y install https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/getPackage/oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm --skip-broken
+sudo dnf -y update
+sudo dnf -y localinstall oracle-database-preinstall-19c.rpm
+sudo dnf install -y bc binutils compat-libstdc++-33 elfutils-libelf-devel fontconfig-devel glibc-devel ksh libaio libXrender libX11 libXtst make gcc unixODBC libnsl
+
+
+
+groupadd -g 5001 oinstall
+groupadd -g 5002 dba
+groupadd -g 5003 oper
+useradd -u 5000 -g oinstall -G dba,oper oracle
+passwd oracle
+
+
+
+mkdir -p /opt/oracle/product/19.0.0/dbhome_1
+mkdir -p /u01/oradata
+chown -R oracle:oinstall /opt /u01
+chmod -R 775 /opt /u01
+
+
+unzip LINUX.X64_193000_db_home.zip -d $ORACLE_HOME
+
+dnf install libnsl  
