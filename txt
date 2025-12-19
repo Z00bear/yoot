@@ -22,3 +22,36 @@ chmod -R 775 /opt /u01
 unzip LINUX.X64_193000_db_home.zip -d $ORACLE_HOME
 
 dnf install libnsl  
+
+
+
+
+
+sudo vi /etc/sysctl.conf
+
+fs.aio-max-nr = 1048576
+fs.file-max = 6815744
+kernel.shmall = 2097152
+kernel.shmmax = 68719476736
+kernel.shmmni = 4096
+kernel.sem = 250 32000 100 128
+net.ipv4.ip_local_port_range = 9000 65500
+
+sudo sysctl -p
+
+
+
+sudo vi /etc/security/limits.conf
+
+oracle soft nofile 4096
+oracle hard nofile 65536
+oracle soft nproc 16384
+oracle hard nproc 16384
+
+sudo vi /home/oracle/.bash_profile
+
+
+export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
+export ORACLE_BASE=/u01/app/oracle
+export ORACLE_SID=ORCLCDB
+export PATH=$PATH:$ORACLE_HOME/bin
